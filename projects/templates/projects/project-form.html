@@ -1,0 +1,48 @@
+{% extends "main.html" %} {% block content %} {% comment %}
+
+<div>
+  <!-- include the enctype for sending media -->
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %} {{form.as_p}}
+    <input type="submit" />
+  </form>
+
+  <h2><a href='{% url "projects" %}'> Home</a></h2>
+</div>
+{% endcomment %}
+
+<!--  -->
+
+<!-- Main Section -->
+<main class="formPage my-xl">
+  <div class="content-box">
+    <div class="formWrapper">
+      <a class="backButton" href="{% url 'account' %}"
+        ><i class="im im-angle-left"><</i></a
+      >
+      <br />
+
+      <!-- Form -->
+      <form class="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Input:Text -->
+        {% for field in form %}
+
+        <div class="form__field">
+          <label for="formInput#text">{{field.label}}</label>
+          {{field}}
+        </div>
+        {% endfor %}
+
+        <input
+          class="btn btn--sub btn--lg my-md"
+          type="submit"
+          value="Submit"
+        />
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}
